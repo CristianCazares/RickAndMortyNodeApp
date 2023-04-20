@@ -1,0 +1,19 @@
+<div class="container p-4">
+  <h1>Episodios</h1>
+
+  <div class="list-group">
+    {{#each data}}
+      <a
+        href={{url}}
+        class="list-group-item list-group-item-action flex-column align-items-start"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{name}}</h5>
+          <small>{{episode}}</small>
+        </div>
+        <p class="mb-1">Emitido: {{air_date}}</p>
+      </a>
+    {{/each}}
+  </div>
+
+</div>

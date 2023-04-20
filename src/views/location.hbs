@@ -1,0 +1,18 @@
+<div class="container p-4">
+  <h1>Ubicaciones</h1>
+  <div class="list-group">
+    {{#each data}}
+      <a
+        href={{url}}
+        class="list-group-item list-group-item-action flex-column align-items-start"
+      >
+        <div class="d-flex w-100 justify-content-between">
+          <h5 class="mb-1">{{name}}</h5>
+          <small>{{residents.length}} residents</small>
+        </div>
+        <p class="mb-1">Discovered on: {{formatDate created}}.</p>
+        <small>Dimension: {{dimension}}</small>
+      </a>
+    {{/each}}
+  </div>
+</div>
