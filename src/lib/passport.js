@@ -14,7 +14,7 @@ passport.use(
     },
     async (req, username, password, done) => {
       const rows = await pool.query(
-        "SELECT * FROM User WHERE BINARY username = ?",
+        "SELECT * FROM user WHERE BINARY username = ?",
         [username]
       );
       if (rows.length > 0) {
@@ -42,7 +42,7 @@ passport.use(
     },
     async (req, username, password, done) => {
       const usernameRows = await pool.query(
-        "SELECT * FROM User WHERE BINARY username = ?",
+        "SELECT * FROM user WHERE BINARY username = ?",
         [username]
       );
       if (usernameRows.length > 0) {
@@ -58,7 +58,7 @@ passport.use(
         username,
         password: await encryptPassword(password),
       };
-      const result = await pool.query("INSERT INTO User SET ?", [newUser]);
+      const result = await pool.query("INSERT INTO user SET ?", [newUser]);
       newUser.id = result.insertId;
       return done(
         null,
@@ -74,6 +74,6 @@ passport.serializeUser((user, done) => {
 });
 
 passport.deserializeUser(async (id, done) => {
-  const rows = await pool.query("SELECT * FROM User WHERE id = ?", [id]);
+  const rows = await pool.query("SELECT * FROM user WHERE id = ?", [id]);
   done(null, rows[0]);
 });

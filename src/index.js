@@ -7,7 +7,7 @@ const session = require("express-session");
 const MySQLStore = require("express-mysql-session");
 const passport = require("passport");
 const moment = require("moment");
-
+require("dotenv").config();
 const { database } = require("./keys");
 
 // Initializations
@@ -36,7 +36,7 @@ app.set("view engine", ".hbs");
 // Middlewares
 app.use(
   session({
-    secret: "itesm502",
+    secret: process.env.SECRET,
     resave: false,
     saveUninitialized: false,
     store: new MySQLStore(database),

@@ -4,7 +4,7 @@ const router = express.Router();
 const { isLoggedIn } = require("../lib/auth");
 
 const URL = "https://rickandmortyapi.com/api";
-router.get("/", async (req, res) => {
+router.get("/", isLoggedIn, async (req, res) => {
   const END_POINT = `${URL}/character`;
 
   axios.get(END_POINT)
@@ -23,7 +23,7 @@ router.get("/", async (req, res) => {
     });
 });
 
-router.get("/location", async (req, res) => {
+router.get("/location", isLoggedIn, async (req, res) => {
   const END_POINT = `${URL}/location`;
 
   axios.get(END_POINT).then((response) => {
@@ -40,7 +40,7 @@ router.get("/location", async (req, res) => {
   });
 });
 
-router.get("/episode", async (req, res) => {
+router.get("/episode", isLoggedIn, async (req, res) => {
   const END_POINT = `${URL}/episode`;
 
   axios.get(END_POINT).then((response) => {
