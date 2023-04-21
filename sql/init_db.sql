@@ -21,8 +21,9 @@ SET time_zone = "+00:00";
 --
 -- Base de datos: `itesm503`
 --
-
 -- --------------------------------------------------------
+ALTER USER 'root'@'%' IDENTIFIED WITH 'mysql_native_password' BY 'secret';
+FLUSH PRIVILEGES;
 
 --
 -- Estructura de tabla para la tabla `sessions`

@@ -1,0 +1,27 @@
+version: '3.8'
+
+services:
+  db:
+    image: mysql
+    restart: unless-stopped
+    env_file: ./.env
+    environment:
+      - MYSQL_ROOT_PASSWORD=$DATABASE_PASSWORD
+      - MYSQL_DATABASE=$DATABASE
+    volumes:
+      - /tmp/mysql-data:/var/lib/mysql 
+      - ./sql:/docker-entrypoint-initdb.d
+  app:
+    depends_on:
+      - db
+    build: .
+    restart: unless-stopped
+    env_file: ./.env
+    ports:
+      - 4000:4000
+    environment:
+      - DATABASE_HOST=db
+      - DATABASE_USER=$DATABASE_USER
+      - DATABASE_PASSWORD=$DATABASE_PASSWORD
+      - DATABASE=$DATABASE
+      - SECRET=$SECRET
